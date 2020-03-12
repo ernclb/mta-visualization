@@ -53,8 +53,8 @@ def loadturnlist(dates):
     return data
 
 raw = loadturnlist(weeks_to_import)
-raw.to_pickle('data/raw_turnstile_data.pkl')
-raw = pd.read_pickle('data/raw_turnstile_data.pkl')
+raw.to_pickle('raw_turnstile_data.pkl')
+raw = pd.read_pickle('raw_turnstile_data.pkl')
 
 # Rename columns
 df = raw.rename(columns=lambda x: x.strip().lower())
@@ -222,7 +222,7 @@ clean_df['timegroupstr'] = clean_df['timegroup'].map(hourgroups)
 clean_df['wkdaynbr'] = clean_df['weekday'].map(wkdaynbr)
 
 print(clean_df.head())
-clean_df.to_pickle('data/cleaned_turnstile_data.pkl')
+clean_df.to_pickle('cleaned_turnstile_data.pkl')
 
 
 # Find daily average entries per station
@@ -236,5 +236,5 @@ sns.distplot(daily_avg, hist=True, kde=True)
 print(daily_avg.head(20))
 print(type(daily_avg))
 
-pd.Series.to_csv(daily_avg, 'data/DailyAverageEntrance.csv')
-pd.Series.to_csv(clean_df, 'data/AllCleanDataFrame.csv')
+pd.Series.to_csv(daily_avg, 'DailyAverageEntrance.csv')
+pd.Series.to_csv(clean_df, 'AllCleanDataFrame.csv')
